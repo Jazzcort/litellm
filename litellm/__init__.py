@@ -204,7 +204,7 @@ filter_invalid_headers: Optional[bool] = False
 add_user_information_to_llm_headers: Optional[bool] = (
     None  # adds user_id, team_id, token hash (params from StandardLoggingMetadata) to request headers
 )
-store_audit_logs = False  # Enterprise feature, allow users to see audit logs
+store_audit_logs: bool = False  # Enterprise feature, allow users to see audit logs
 skip_system_message_in_guardrail: bool = False
 skip_tool_message_in_guardrail: bool = False
 ### end of callbacks #############
@@ -215,7 +215,7 @@ email: Optional[str] = (
 token: Optional[str] = (
     None  # Not used anymore, will be removed in next MAJOR release - https://github.com/BerriAI/litellm/discussions/648
 )
-telemetry = True
+telemetry: bool = True
 max_tokens: int = DEFAULT_MAX_TOKENS  # OpenAI Defaults
 drop_params = bool(os.getenv("LITELLM_DROP_PARAMS", False))
 modify_params = bool(os.getenv("LITELLM_MODIFY_PARAMS", False))
@@ -229,7 +229,7 @@ use_legacy_interactions_schema: bool = (
     os.getenv("LITELLM_USE_LEGACY_INTERACTIONS_SCHEMA", "false").lower() == "true"
 )  # When True, sends Api-Revision: 2026-05-07 to Google so responses use the legacy `outputs`
 # schema instead of the new `steps` schema. Remove this flag after June 8, 2026.
-retry = True
+retry: bool = True
 ### AUTH ###
 api_key: Optional[str] = None
 openai_key: Optional[str] = None
@@ -390,7 +390,7 @@ anthropic_beta_headers_url: str = os.getenv(
     "LITELLM_ANTHROPIC_BETA_HEADERS_URL",
     "https://raw.githubusercontent.com/BerriAI/litellm/main/litellm/anthropic_beta_headers_config.json",
 )
-suppress_debug_info = False
+suppress_debug_info: bool = False
 dynamodb_table_name: Optional[str] = None
 s3_callback_params: Optional[Dict] = None
 s3_audit_callback_params: Optional[Dict] = None
@@ -509,7 +509,7 @@ cost_margin_config: Dict[str, Union[float, Dict[str, float]]] = (
 # Global: {"global": 0.05} = 5% global margin on all providers
 # Combined: {"vertex_ai": {"percentage": 0.08, "fixed_amount": 0.0005}}
 custom_prompt_dict: Dict[str, dict] = {}
-check_provider_endpoint = False
+check_provider_endpoint: bool = False
 
 
 ####### THREAD-SPECIFIC DATA ####################
@@ -2049,7 +2049,7 @@ if TYPE_CHECKING:
 
 
 # Track if async client cleanup has been registered (for lazy loading)
-_async_client_cleanup_registered = False
+_async_client_cleanup_registered: bool = False
 
 # Eager loading for backwards compatibility with VCR and other HTTP recording tools
 # When LITELLM_DISABLE_LAZY_LOADING is set, lazy-loaded attributes are loaded at import time
